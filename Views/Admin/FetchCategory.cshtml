@@ -1,0 +1,44 @@
+﻿@model IEnumerable<dotnet_project_ecommerce.Models.Category>
+
+@{
+    ViewData["Title"] = "All  Category";
+}
+
+<h1>FetchCategory</h1>
+<a class=" btn btn-primary" href=@Url.Action("AddCategory")> Add Category </a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            @Html.DisplayNameFor(model => model.category_id)
+            </th>
+
+            <th>   @Html.DisplayNameFor(model => model.category_name)</th>
+          <th>   Options</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.category_id)
+
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category_name)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category_id)
+
+                </td>
+            <td>
+                <a asp-action="UpdateCategory" asp-route-id="@item.category_id" class="btn btn-warning">Update</a> |
+                    <a asp-action="DeleteCategoryPermission" asp-route-id="@item.category_id" class=" btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

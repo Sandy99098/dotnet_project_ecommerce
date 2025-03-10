@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "UpdateCustomerProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Customer
+
+<h1 class="text-center">Update Your Profile</h1>
+
+<div class="container">
+    <form method="post" asp-action="UpdateCustomerProfile" asp-controller="Customer" enctype="multipart/form-data">
+        <input type="hidden" asp-for="customer_id" /> <!-- Hidden field for customer ID -->
+
+        <div class="form-group">
+            <label asp-for="customer_name">Full Name</label>
+            <input asp-for="customer_name" class="form-control" />
+            <span asp-validation-for="customer_name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="customer_email">Email</label>
+            <input asp-for="customer_email" class="form-control" />
+            <span asp-validation-for="customer_email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="customer_phone">Phone Number</label>
+            <input asp-for="customer_phone" class="form-control" />
+            <span asp-validation-for="customer_phone" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="customer_password">Password</label>
+            <input asp-for="customer_password" type="text" class="form-control"  />
+            <span asp-validation-for="customer_password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="customer_gender">Gender</label>
+            <select asp-for="customer_gender" class="form-control">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <span asp-validation-for="customer_gender" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="customer_country">Country</label>
+            <input asp-for="customer_country" class="form-control" />
+            <span asp-validation-for="customer_country" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="customer_city">City</label>
+            <input asp-for="customer_city" class="form-control" />
+            <span asp-validation-for="customer_city" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="customer_address">Address</label>
+            <input asp-for="customer_address" class="form-control" />
+            <span asp-validation-for="customer_address" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="customer_image">Profile Image</label>
+            <input type="file" name="customer_image"  required class="form-control" />
+            <span  class="text-danger">@ViewBag.FileError</span> <!-- Display file upload errors -->
+        </div>
+
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-warning me-2">Update</button>
+            <a asp-action="CustomerProfile" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

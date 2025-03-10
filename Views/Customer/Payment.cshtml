@@ -1,0 +1,219 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+
+    <!-- Inline CSS -->
+    <style>
+        /* Center the main container */
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            text-align: start; /* Align text to the start */
+            max-width: 600px; /* Limit the width */
+            margin: 0 auto; /* Center the container */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            /* Style for the product image */
+            .product-details img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 10px;
+                margin-bottom: 20px;
+            }
+
+            /* Style for the product name and price */
+            .product-details h3 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .product-details p {
+                font-size: 18px;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+        /* Style for the payment options */
+        .payment-options {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+            .payment-options label {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 16px;
+            }
+
+        /* Style for the Proceed to Payment button */
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        /* Quantity Controls */
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+            .quantity-controls button {
+                background-color: #007bff;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+                .quantity-controls button:hover {
+                    background-color: #0056b3;
+                }
+
+            .quantity-controls input {
+                width: 50px;
+                text-align: center;
+                font-size: 16px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 5px;
+            }
+
+        .btn-esewa {
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .btn-esewa img {
+                width: 150px; /* Adjust as needed */
+                height: auto;
+                transition: opacity 0.3s ease-in-out;
+            }
+            .btn-esewa:hover {
+                background-color:white;
+            }
+
+
+
+
+    </style>
+
+        
+        <title></title></head>
+    <body>
+
+
+
+  
+<h2>Your Product</h2>
+
+<div class="product-details">
+    <img src="@Url.Content("~/Uploads/product_images/" + Model.product_image)" alt="@Model.product_name" loading="lazy" />
+    <h3>@Model.product_name</h3>
+    <p>Price: $<span id="productPrice">@Model.product_price</span></p>
+
+    <!-- Quantity Controls -->
+    <div class="quantity-controls">
+        <button type="button" id="decreaseQuantity">-</button>
+        <input type="number" id="quantity" value="1" min="1" readonly />
+        <button type="button" id="increaseQuantity">+</button>
+    </div>
+
+    <!-- Total Price -->
+    <p>Total: $<span id="totalPrice">@Model.product_price</span></p>
+        <form asp-action="ProcessPayment" method="post">
+            <input type="hidden" name="productId" value="@Model.product_id" />
+            <input type="hidden" name="quantity" id="hiddenQuantity" value="1" />
+            <input type="hidden" name="totalAmount" id="hiddenTotalAmount" value="@Model.product_price" />
+
+            <button type="submit" name="paymentMethod" value="esewa" class="btn-esewa">
+                <img src="~/paymentlogo/esewaLogo.png" alt="Pay with eSewa" >
+            </button>
+
+
+            @* <button asp-action="PayWithKhalti" type="submit" name="PayWithKhalti" value="Khalti" class="btn"> *@
+            @*   "Pay with Khalti *@
+            @* </button> *@
+        </form>
+        <form asp-action="InitiateKhaltiPayment" method="post">
+            <input type="hidden" name="productId" value="@Model.product_id" />
+            <button type="submit" class="btn btn-primary">Pay with Khalti</button>
+        </form>
+
+</div>
+
+</body>
+
+<!-- Inline JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const quantityInput = document.getElementById("quantity");
+        const decreaseButton = document.getElementById("decreaseQuantity");
+        const increaseButton = document.getElementById("increaseQuantity");
+        const productPrice = parseFloat(document.getElementById("productPrice").textContent);
+        const totalPriceElement = document.getElementById("totalPrice");
+        const hiddenQuantity = document.getElementById("hiddenQuantity");
+        const hiddenTotalAmount = document.getElementById("hiddenTotalAmount");
+
+        function updateTotalPrice() {
+            const quantity = parseInt(quantityInput.value);
+            const totalPrice = quantity * productPrice;
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+            hiddenQuantity.value = quantity;
+            hiddenTotalAmount.value = totalPrice.toFixed(2);
+        }
+
+        decreaseButton.addEventListener("click", function () {
+            let quantity = parseInt(quantityInput.value);
+            if (quantity > 1) {
+                quantity--;
+                quantityInput.value = quantity;
+                updateTotalPrice();
+            }
+        });
+
+        increaseButton.addEventListener("click", function () {
+            let quantity = parseInt(quantityInput.value);
+            quantity++;
+            quantityInput.value = quantity;
+            updateTotalPrice();
+        });
+
+        // Initialize total price on page load
+        updateTotalPrice();
+    });
+</script>
+
+</html>

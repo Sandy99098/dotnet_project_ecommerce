@@ -1,0 +1,43 @@
+﻿@model Feedback
+@{
+    ViewData["Title"] = "DeleteFeedback";
+}
+
+<h1 class="text-danger fw-bold">
+    Delete Feedback <br />
+    Are you sure you want to delete this feedback?
+</h1>
+
+<div class="align-items-md-center" style="display:flex; flex-direction:column; align-items:start">
+
+    <!-- Feedback Name -->
+    <div class="fw-bold col-sm-2">
+        Feedback Name:
+    </div>
+    <div class="fw-bold col-sm-2">
+        <div class="fw-normal">@Html.DisplayFor(model => model.user_name)</div>
+    </div>
+
+    <!-- Feedback ID -->
+    <div class="fw-bold col-sm-2">
+        Feedback ID:
+        <div class="fw-normal col-sm-10">@Html.DisplayFor(model => model.feedback_id)</div>
+    </div>
+
+    <!-- Feedback Message -->
+    <div class="fw-bold col-sm-2">
+        Feedback Message:
+        <div class="fw-normal">@Html.DisplayFor(model => model.user_message)</div>
+    </div>
+
+    <!-- Buttons for Delete and Cancel -->
+    <div style="height:40px;">
+        <div class="col-sm-12">
+            <form method="post" asp-action="DeleteFeedback" asp-controller="Admin">
+                <input type="hidden" asp-for="feedback_id" /> <!-- Hidden field for feedback ID -->
+                <button type="submit" class="btn btn-danger">Delete Feedback</button>
+                <a href="@Url.Action("fetchFeedback", "Admin")" class="btn btn-success">No</a>
+            </form>
+        </div>
+    </div>
+</div>

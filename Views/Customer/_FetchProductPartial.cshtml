@@ -1,0 +1,39 @@
+﻿@model Product
+
+<div class="best-p1">
+    <img src="@Url.Content("~/Uploads/product_images/" + Model.product_image)" asp-append-version="true" width="100" height="100" alt="@Model.product_name" />
+    @* <img src="@product[i].product_image" alt="@product[i].product_name" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x300?text=No+Image';" /> *@
+
+    <div class="best-p1-txt">
+        <div class="name-of-p">
+            <p>@Model.product_name</p>
+        </div>
+        <div class="rating">
+            <!-- Add rating logic here if needed -->
+            <i class='bx bxs-star'></i>
+            <i class='bx bxs-star'></i>
+            <i class='bx bxs-star'></i>
+            <i class='bx bx-star'></i>
+            <i class='bx bx-star'></i>
+        </div>
+        <div class="price">
+            &dollar;@Model.product_price
+            <div class="colors">
+                <!-- Add color options here if needed -->
+                <i class='bx bxs-circle red'></i>
+                <i class='bx bxs-circle blue'></i>
+                <i class='bx bxs-circle white'></i>
+            </div>
+        </div>
+        <div class="buy-now">
+            <button> 
+
+                <a  class="btn  " asp-controller="Customer" asp-action="Payment" asp-route-id="@Model.product_id">Buy Now</a>
+            </button>
+            <button>
+
+                <a class="btn  " asp-controller="Customer" asp-action="AddToCart" asp-route-id="@Model.product_id">add to cart Now</a>
+            </button>
+        </div>
+    </div>
+</div>

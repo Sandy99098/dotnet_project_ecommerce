@@ -1,0 +1,179 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Product>
+@{
+    var categories = ViewData["categories"] as List<Category>;
+}
+
+<!-- Home Section -->
+<section id="home">
+    <div class="home_page">
+        <div class="home_img">
+            <img src="https://i.postimg.cc/t403yfn9/home2.jpg" loading="lazy">
+        </div>
+        <div class="home_txt">
+            <p class="collections">SUMMER COLLECTION</p>
+            <h2>FALL - WINTER<br>Collection 2023</h2>
+            <div class="home_label">
+                <p>A specialist label creating luxury essentials. Ethically crafted<br>with an unwavering commitment to exceptional quality.</p>
+            </div>
+            <button onclick="window.location.href='#sellers'">
+                SHOP NOW <i class='bx bx-right-arrow-alt'></i>
+            </button>
+            <div class="home_social_icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-pinterest'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Collection Section -->
+<section id="collection">
+    <div class="collections container">
+        @if (categories != null)
+        {
+            @for (int i = 0; i < categories.Count; i++)
+            {
+                <div class="content">
+                    <img src="@GetImageForCategory(categories[i].category_name)" alt="@categories[i].category_name" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x300?text=No+Image';" />
+                    <div class="img-content">
+                        <p>@categories[i].category_name</p>
+                        <button>
+                            <a href="#@categories[i].category_name.ToLower()">SHOP NOW</a>
+                        </button>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>
+
+@functions {
+    string GetImageForCategory(string categoryName)
+    {
+        switch (categoryName.ToLower())
+        {
+            case "fashion":
+                return "https://i.postimg.cc/Xqmwr12c/clothing.webp";
+            case "accessories":
+                return "https://i.postimg.cc/MHv7KJYp/access.webp";
+            case "electronics":
+                return "https://i.postimg.cc/0ygJtq1D/pngtree-some-electronic-gadgets-on-a-wooden-table-picture-image-15295928.png";
+            case "food":
+                return "https://i.postimg.cc/0ygJtq1D/pngtree-some-electronic-gadgets-on-a-wooden-table-picture-image-15295928.png";
+            case "others":
+                return "https://via.placeholder.com/150";
+            default:
+                return "https://via.placeholder.com/150";
+        }
+    }
+}
+
+<!-- Sellers Section -->
+<section id="sellers">
+
+    <div class="seller container">
+        <h2>Our Products</h2>
+        <div class="best-seller">
+            @foreach (var product in Model)
+            {
+                <partial name="_FetchProductPartial" model="product" />
+            }
+        </div>
+
+    </div>
+
+    <br />
+    <hr />
+    <div class="seller container">
+    <!-- Electronics Section -->
+    <section id="electronics">
+        <div class="seller container">
+            <h2>Electronics</h2>
+            <div class="best-seller">
+                @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name == "Electronics")?.category_id))
+                {
+                    <partial name="_FetchProductPartial" model="product" />
+                }
+            </div>
+        </div>
+    </section>
+    </div>
+  <br />
+  <hr />
+    <!-- Food Section -->
+    <section id="food">
+        <div class="seller container">
+        <div class="seller container">
+            <h2>Food</h2>
+            <div class="best-seller">
+                @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name == "Food")?.category_id))
+                {
+                    <partial name="_FetchProductPartial" model="product" />
+                }
+            </div>
+        </div>
+             </div>
+
+    </section>
+
+    <!-- Fashion Section -->
+    <section id="fashion">
+        <div class="seller container">
+            <h2>Fashion</h2>
+            <div class="best-seller">
+                @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name == "Fashion")?.category_id))
+                {
+                    <partial name="_FetchProductPartial" model="product" />
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Others Section -->
+    <section id="others">
+        <div class="seller container">
+            <h2>Others</h2>
+            <div class="best-seller">
+                @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name == "Others")?.category_id))
+                {
+                    <partial name="_FetchProductPartial" model="product" />
+                }
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="contact container">
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3515.449365189775!2d83.97812817557903!3d28.2240374758903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995943f649d200b%3A0x4ee44c3d0bca654e!2sMount%20Annapurna%20Campus!5e0!3m2!1sen!2snp!4v1740881049405!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <form action="ContactUs" method="POST">
+            <div class="form">
+                <div class="form-txt">
+                    <h4>INFORMATION</h4>
+                    <h1>Contact Us</h1>
+                    <span>
+                        As you might expect of a company that began as a high-end interiors contractor, we pay strict
+                        attention.
+                    </span>
+                    <h3>Nepal</h3>
+                    <p>6XFJ+J78, Kahun Rd, Pokhara 33700<br> 061522650</p>
+                </div>
+                <div class="form-details">
+                    <input type="text" name="name" id="name" placeholder="Name" required>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                    <textarea name="message" id="message" cols="52" rows="7" placeholder="Message" required></textarea>
+                    <button asp-action="">SEND MESSAGE</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

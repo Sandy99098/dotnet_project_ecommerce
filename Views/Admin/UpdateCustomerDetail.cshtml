@@ -1,0 +1,53 @@
+﻿@model dotnet_project_ecommerce.Models.Customer
+
+@{
+    ViewData["Title"] = "UpdateCustomerDetail";
+}
+
+<h1>UpdateCustomerDetail</h1>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-2"> </div>
+    <div class="col-md-8">
+
+        <form action="UpdateCustomerDetail" method="post" enctype="multipart/form-data">
+                @* <input type="text" name="Customer Image" value="@Model.customer_image" class="form-control my-3 " /> *@
+                @* Customer Id <br /> *@
+                <input type="hidden" name="customer_id" value="@Model.customer_id"  />
+            Customer Name <br />
+
+            <input type="text" name="customer_name" value="@Model.customer_name" class="form-control my-3 " />
+            Customer Phone Number <br />
+
+            <input type="text" name="customer_phone" value="@Model.customer_phone" class="form-control my-3 " />
+            Customer Email <br />
+
+            <input type="text" name="customer_email" value="@Model.customer_email" class="form-control my-3 " />
+            Customer Password <br />
+
+            <input type="text" name="customer_password" value="@Model.customer_password" class="form-control my-3 " />
+            Customer Gender <br />
+
+            <input type="text" name="customer_gender" value="@Model.customer_gender" class="form-control my-3 " />
+            Customer Country <br />
+
+            <input type="text" name="customer_country" value="@Model.customer_country" class="form-control my-3 " />
+            Customer City <br />
+
+            <input type="text" name="customer_city" value="@Model.customer_city" class="form-control my-3 " />
+            Customer Address <br />
+
+            <input type="text" name="customer_address" value="@Model.customer_address" class="form-control my-3 " />
+
+            Customer Image <br />
+
+                <input type="file" name="customer_image"  class="form-control my-3 " />
+            <input type="submit" name="submit" value="Update Customer Details " class="form-control my-3  btn btn-primary" />
+
+            </form>
+</div>
+
+<div class="col-md-2"> </div>
+</div>

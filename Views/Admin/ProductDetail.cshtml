@@ -1,0 +1,76 @@
+﻿@model dotnet_project_ecommerce.Models.Product
+
+@* @{ *@
+@*     ViewData["Title"] = "ProductDetails"; *@
+@* } *@
+
+@* <h1>ProductDetails</h1> *@
+
+@* @{ *@
+@*     ViewData["Title"] = "CustomerDetails"; *@
+@*     Layout = "~/Views/Shared/_Dashboard.cshtml"; // Ensure the correct layout is set *@
+@* } *@
+
+
+<hr />
+
+<div class="align-items-md-center" style="display:flex ; flex-direction:column ; align-items:start">
+
+    <div class="fw-bold col-sm-2">
+    Product
+</div>
+
+    <div class="fw-bold col-sm-2 ">
+
+    <div class=" fw-normal"> @Html.DisplayFor(model => model.product_name ) </div>
+
+</div>
+
+
+
+<div>
+    <img src="~/Uploads/Product_Images/@Model.product_image" asp-append-version="true" width="250" height="250" />
+</div>
+
+
+    <div class="fw-bold col-sm-2 ">
+        Product Id :
+        <div class=" fw-normal col-sm-10 "> @Html.DisplayFor(model => model.product_id) </div>
+    </div>
+
+<div class="fw-bold col-sm-2 ">
+    Product Price :
+    <div class=" fw-normal col-sm-10 "> @Html.DisplayFor(model => model.product_price) </div>
+</div>
+<div class="fw-bold col-sm-2">
+    Product Description
+    <div class=" fw-normal"> @Html.DisplayFor(model => model.product_description) </div>
+</div>
+    <div class="fw-bold col-sm-2">
+        Category:
+        <div class=" fw-normal"> @Html.DisplayFor(model => model.Category.category_name) </div>
+    </div>
+
+
+
+<div style="height:40px;">
+    
+</div>
+
+
+
+
+<div>
+    @* <a asp-action="UpdateCustomerDetails" asp-route-id="@Model?.product_id" class="btn btn-secondary">Edit</a> | *@
+    @* <a asp-action="Index" class="btn btn-primary">Back to List</a> *@
+        <a asp-action="fetchProduct" class="btn btn-primary">Back to List</a>
+        |
+
+<a asp-action="Cart" asp-route-id="@Model?.product_id" class="btn btn-warning">Add To Cart </a> |
+<a asp-action="PaymentPage" class=" btn btn-success">Buy Now</a>
+
+</div>
+
+
+
+</div>

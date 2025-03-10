@@ -1,0 +1,25 @@
+﻿@model dotnet_project_ecommerce.Models.Category
+
+@* @model IEnumerable<dotnet_project_ecommerce.Models.Category> *@
+
+@{
+    ViewData["Title"] = "UpdateCategory";
+}
+
+<h1>UpdateCategory</h1>
+
+<div class="row">
+
+<div class="col-md-2">
+    <div class="col-md-8"> </div>
+    
+    <form action="updateCategory" method="post">
+        
+        <input type="hidden" name="category_id" value="@Model.category_id" />
+            <input type="text" name="category_name" value="@Model.category_name" class="form-control my-3" />
+            <input type="submit" name="name" value="Update Category" class="form-control my-3 btn btn-primary" />
+
+
+        </form>
+</div>
+</div>

@@ -1,0 +1,123 @@
+﻿@using dotnet_project_ecommerce.sessionhelper
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="HamroPasal - Your one-stop shop for Everything.">
+    <meta name="author" content="Sandeep">
+    <title>@ViewData["Title"] - HamroPasal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Customer/Style.css" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <section class="top-txt">
+            <div class="head container">
+                <div class="head-txt">
+                    <p>Free shipping, 30-day return or refund guarantee.</p>
+                </div>
+                <<div class="sing_in_up">
+                    @if (string.IsNullOrEmpty(SessionHelper.GetCustomerSession()))
+                    {
+                        <a asp-controller="Customer" asp-action="CustomerLogin" aria-label="Log in">
+                            <i class='bx bx-user' title="Log In"></i> LOG IN
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+                                <i class='bx bx-user' title="User Menu"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item text-black" href="@Url.Action("CustomerProfile", "Customer")">Profile</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item text-black" href="@Url.Action("CustomerLogOut", "Customer")">Logout</a></li>
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <input type="checkbox" id="checkbox">
+                <label for="checkbox" class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </label>
+                <ul class="menu-items">
+                    <li><a asp-controller="Customer" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Customer" asp-action="Sellers">Shop</a></li>
+                    <li><a asp-controller="Customer" asp-action="Blog">Blog</a></li>
+                    <li><a asp-controller="Customer" asp-action="ContactUs">Contact</a></li>
+                    <li><a asp-controller="Customer" asp-action="Feedback">FeedBack</a></li>
+                    <li><a asp-controller="Customer" asp-action="ViewCart">Cart</a></li>
+
+
+                </ul>
+                <div class="logo">
+                    <img src="https://i.postimg.cc/TP6JjSTt/logo.webp" alt="Molla Logo - Home">
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container container">
+            <div class="content_1">
+                <img src="https://i.postimg.cc/htGyQ4JB/footer-logo.png" alt="Footer Logo">
+                <p>The customer is at the heart of our<br>unique business model, which includes<br>design.</p>
+                <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="Payment Methods">
+            </div>
+            <div class="content_2">
+                <h4>SHOPPING</h4>
+                <a href="#sellers">Clothing Store</a>
+                <a href="#sellers">Trending Shoes</a>
+                <a href="#sellers">Accessories</a>
+                <a href="#sellers">Sale</a>
+            </div>
+            <div class="content_3">
+                <h4>SHOPPING</h4>
+                <a asp-controller="Customer" asp-action="ContactUs">Contact Us</a>
+                <a asp-controller="Customer" asp-action="PaymentMethod">Payment Method</a>
+                <a asp-controller="Customer" asp-action="Delivery">Delivery</a>
+                <a asp-controller="Customer" asp-action="ReturnAndExchange">Return and Exchange</a>
+            </div>
+            <div class="content_4">
+                <h4>NEWLETTER</h4>
+                <p>Be the first to know about new<br>arrivals, look books, sales & promos!</p>
+                <div class="f-mail">
+                    <input type="email" placeholder="Your Email">
+                    <i class='bx bx-envelope'></i>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="f-design">
+            <div class="f-design-txt container">
+                <p>Design and Code by code.sanket</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Customer/Script.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

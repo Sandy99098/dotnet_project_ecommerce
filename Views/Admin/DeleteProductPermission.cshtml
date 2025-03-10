@@ -1,0 +1,66 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "DeleteProductPermission";
+}
+
+<h1 class="text-danger fw-bold">
+    DeletePermission <br />
+
+    Do you want to Delete this Product  ?
+</h1>
+
+
+
+
+    <div class="align-items-md-center" style="display:flex ; flex-direction:column ; align-items:start">
+
+        <div class="fw-bold col-sm-2">
+            Product
+        </div>
+
+        <div class="fw-bold col-sm-2 ">
+
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.product_name) </div>
+
+        </div>
+
+
+
+        <div>
+            <img src="~/Uploads/Product_Images/@Model.product_image" asp-append-version="true" width="250" height="250" />
+        </div>
+
+
+        <div class="fw-bold col-sm-2 ">
+            Product Id :
+            <div class=" fw-normal col-sm-10 "> @Html.DisplayFor(model => model.product_id) </div>
+        </div>
+
+        <div class="fw-bold col-sm-2 ">
+            Product Price :
+            <div class=" fw-normal col-sm-10 "> @Html.DisplayFor(model => model.product_price) </div>
+        </div>
+        <div class="fw-bold col-sm-2">
+            Product Description
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.product_description) </div>
+        </div>
+        <div class="fw-bold col-sm-2">
+            Category:
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.Category.category_name) </div>
+        </div>
+
+
+
+        <div style="height:40px;">
+
+        @* <div style="height:40px;"> *@
+
+<div class="col-sm-12 ">
+
+    <a href="@Url.Action("deleteproduct","Admin" ,new{Id=Model.product_id})" class="btn btn-danger">Delete Product </a>
+    <a href="@Url.Action("fetchproduct","Admin")" class="btn btn-success">No</a>
+</div>
+        </div>
+
+
+</div>

@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "ShowFeedback";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+@model Feedback
+
+<h1 class="text-center mb-4">Feedback Details</h1>
+
+<div class="container">
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="mb-3">
+                <h5 class="fw-bold">Feedback ID:</h5>
+                <p class="fs-5">@Model.feedback_id</p>
+            </div>
+
+            <div class="mb-3">
+                <h5 class="fw-bold">Feedback By:</h5>
+                <p class="fs-5">@Model.user_name</p>
+            </div>
+
+            <div class="mb-3">
+                <h5 class="fw-bold">Feedback Message:</h5>
+                <p class="fs-5">@Model.user_message</p>
+            </div>
+
+            <div class="text-center mt-4">
+                <a asp-action="fetchfeedback" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>

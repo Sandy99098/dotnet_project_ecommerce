@@ -1,0 +1,93 @@
+﻿@model List<dotnet_project_ecommerce.Models.Admin>
+
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="container-fluid px-4">
+        <h2 class="mt-4 text-center text-uppercase" style="letter-spacing: 4px;">My Profile</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 mx-auto">
+            @* Profile Update Form  *@
+            <form asp-action="Profile" method="post" id="profileForm">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" name="admin_id" value="@Model[0].admin_id" />
+
+                <div class="form-group my-3">
+                    <label for="admin_name">Name</label>
+                    <input type="text"
+                           name="admin_name"
+                           value="@Model[0].admin_name"
+                           placeholder="Enter your full name"
+                           class="form-control"
+                           id="admin_name"
+                           required />
+                </div>
+
+                <div class="form-group my-3">
+                    <label for="admin_email">Email</label>
+                    <input type="email"
+                           name="admin_email"
+                           value="@Model[0].admin_email"
+                           placeholder="Enter your email address"
+                           class="form-control"
+                           id="admin_email"
+                           required />
+                </div>
+
+                <div class="form-group my-3">
+                    <label for="admin_password">Password</label>
+                    <input type="password"
+                           name="admin_password"
+                           placeholder="Enter your new password"
+                           class="form-control"
+                           id="admin_password"
+                           required />
+                </div>
+
+                <input type="hidden" name="admin_image" value="@Model[0].admin_image" />
+
+                <div class="form-group my-3">
+                    <input type="submit"
+                           value="Update Profile"
+                           class="form-control btn btn-primary" />
+                </div>
+            </form>
+
+            @* Profile Image Update Form  *@
+
+            @* <form method="post" asp-action="ChangeProfileImage" enctype="multipart/form-data"> *@
+                @* <input type="hidden" name="admin_id" value="@Model[0].admin_id" /> *@
+                @* <input type="hidden" name="admin_name" value="@Model[0].admin_name" /> *@
+                @* <input type="hidden" name="admin_email" value="@Model[0].admin_email" /> *@
+                @* <input type="hidden" name="admin_password" value="@Model[0].admin_password" /> *@
+
+            @*   <input type="file" name="admin_image" class="form-control my-3"/> *@
+            @*   <img src="@("~/admin_image/"+ (Model[0].admin_image))" asp-append-version="true"/> *@
+            @*     <input type="submit" name="name" value="Change Profile Image" class="form-control btn btn-primary" /> *@
+            @* </form> *@
+            <form method="post" asp-action="ChangeProfileImage" enctype="multipart/form-data">
+                <input type="hidden" name="admin_id" value="@Model[0].admin_id" />
+                <input type="hidden" name="admin_name" value="@Model[0].admin_name" />
+                <input type="hidden" name="admin_email" value="@Model[0].admin_email" />
+                <input type="hidden" name="admin_password" value="@Model[0].admin_password" />
+
+                <input type="file" name="admin_image" class="form-control my-3" required />
+
+                @* <img src="@("~/Uploads/admin_images/" + Model[.admin_image)" asp-append-version="true" class="img-thumbnail" width="150" height="200" /> *@
+                <img src="@("~/Uploads/admin_images/" + Model[0].admin_image)" asp-append-version="true" class="img-thumbnail" width="200" height="400" />
+
+                <input type="submit" value="Change Profile Image" class="form-control btn btn-primary" />
+            </form>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger text-center">
+        No profile data available. Please try logging in again.
+    </div>
+}

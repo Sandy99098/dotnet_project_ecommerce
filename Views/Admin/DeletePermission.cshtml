@@ -1,0 +1,71 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "DeletePermission";
+}
+
+<h1 class="text-danger fw-bold">DeletePermission <br />
+
+    Do you want to Delete this Customer  ?
+</h1>
+
+<div>
+    
+    <div class="">
+
+        <h4>Customer</h4>
+        <hr />
+        <div class="fw-bold">
+            Customer Image
+        </div>
+
+        <div>
+            <img src="~/Uploads/Customer_images/@Model.customer_image" asp-append-version="true" width="250" height="250" />
+        </div>
+
+        <div class="fw-bold">
+            Customer Name
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.customer_name) </div>
+        </div>
+
+        <div class="fw-bold">
+            Phone Number :
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.customer_phone) </div>
+        </div>
+        <div class="fw-bold">
+            Customer Email
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.customer_email) </div>
+        </div>
+
+        <div class="fw-bold">
+            Customer Password
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.customer_password) </div>
+        </div>
+
+        <div class="fw-bold">
+            Customer Gender
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.customer_gender) </div>
+        </div>
+        <div class="fw-bold">
+            Customer Country :
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.customer_country) </div>
+        </div>
+        <div class="fw-bold col-sm-2 ">
+            Customer City :
+            <div class=" fw-normal col-sm-10 "> @Html.DisplayFor(model => model.customer_city) </div>
+        </div>
+        <div class="fw-bold">
+            Customer Address :
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.customer_address) </div>
+        </div>
+
+
+
+        <a href="@Url.Action("DeleteCustomer","Admin" ,new{Id=Model.customer_id})" class="btn btn-danger">Delete Customer </a>
+        <a href="@Url.Action("FetchCustomer","Admin")" class="btn btn-success">No</a>
+
+
+    </div>
+
+
+
+</div>

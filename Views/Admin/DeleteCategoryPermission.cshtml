@@ -1,0 +1,36 @@
+﻿@model Category
+
+
+
+<h1 class="text-danger fw-bold">
+    DeleteCategoryPermission <br />
+
+    Do you want to Delete this Category  ?
+</h1>
+
+<div>
+
+    <div class="">
+
+       
+
+        <div class="fw-bold">
+            Category Name
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.category_name) </div>
+        </div>
+        <div class="fw-bold">
+            Category Id
+            <div class=" fw-normal"> @Html.DisplayFor(model => model.category_id) </div>
+        </div>
+
+
+
+        <a href="@Url.Action("deletecategory","Admin" ,new{Id=Model.category_id})" class="btn btn-danger">Delete Category </a>
+        <a href="@Url.Action("fetchCategory","Admin")" class="btn btn-success">No</a>
+
+
+    </div>
+
+
+
+</div>

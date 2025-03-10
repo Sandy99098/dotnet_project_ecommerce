@@ -1,0 +1,52 @@
+﻿@model dotnet_project_ecommerce.Models.Product
+
+
+<h1>AddProduct</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddProduct" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="product_name" class="control-label"></label>
+                <input asp-for="product_name" required class="form-control" placeholder="Enter Product Name" />
+                <span asp-validation-for="product_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="product_price" class="control-label"></label>
+                <input asp-for="product_price" required class="form-control" />
+                <span asp-validation-for="product_price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="product_image" class="control-label"></label>
+                <input asp-for="product_image" required type="file" class="form-control" />
+                <span asp-validation-for="product_image" class="text-danger"></span>
+
+                <div>
+                    @Html.Partial("CategoryDropdown",ViewData["Category"]) 
+                </div>
+
+            <div class="form-group">
+                <label asp-for="product_description" class="control-label"></label>
+                    <input asp-for="product_description" required class="form-control" />
+                <span asp-validation-for="product_description" class="text-danger"></span>
+            </div>
+            </div>
+            @* <div class="form-group"> *@
+            @*     <label asp-for="cat_id" class="control-label"></label> *@
+            @*     <select asp-for="cat_id" class ="form-control" asp-items="ViewBag.cat_id"></select> *@
+            @* </div> *@
+            <div class="form-group">
+                <input type="submit" value="AddProduct" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

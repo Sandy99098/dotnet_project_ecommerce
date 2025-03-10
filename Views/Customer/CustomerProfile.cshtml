@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "CustomerProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    // Layout = null;
+}
+@model Customer
+
+<body class="center">
+    <div class="container d-flex justify-content-center  ">
+        <div class="text-center">
+            <h1>@Model.customer_name</h1>
+            <hr />
+            <div class="fw-bold">
+                @Model.customer_name's Image
+            </div>
+
+            <div>
+                <img src="~/Uploads/Customer_images/@Model.customer_image" asp-append-version="true" width="250" height="auto" class="img-fluid d-block mx-auto" />
+            </div>
+
+            <div class="fw-bold">
+                Customer Name:
+                <div class="fw-normal"> @Html.DisplayFor(model => model.customer_name) </div>
+            </div>
+
+            <div class="fw-bold">
+                Phone Number :
+                <div class="fw-normal"> @Html.DisplayFor(model => model.customer_phone) </div>
+            </div>
+            <div class="fw-bold">
+                Customer Email
+                <div class="fw-normal"> @Html.DisplayFor(model => model.customer_email) </div>
+            </div>
+
+            <div class="fw-bold">
+                Customer Password
+                <div class="fw-normal"> @Html.DisplayFor(model => model.customer_password) </div>
+            </div>
+
+            <div class="fw-bold">
+                Customer Gender
+                <div class="fw-normal"> @Html.DisplayFor(model => model.customer_gender) </div>
+            </div>
+            <div class="fw-bold">
+                Customer Country :
+                <div class="fw-normal"> @Html.DisplayFor(model => model.customer_country) </div>
+            </div>
+            <div class="fw-bold ">
+                Customer City :
+                <div class="fw-normal col-sm-10"> @Html.DisplayFor(model => model.customer_city) </div>
+            </div>
+            <div class="fw-bold">
+                Customer Address :
+                <div class="fw-normal"> @Html.DisplayFor(model => model.customer_address) </div>
+            </div>
+            <a asp-action="UpdateCustomerProfile" asp-route-id="@Model.customer_id" class="btn btn-warning mt-3">Update Profile</a>
+        </div>
+    </div>
+</body>

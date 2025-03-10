@@ -1,0 +1,45 @@
+﻿
+    @{
+        ViewData["Title"] = "ViewCart";
+
+        Layout = "~/Views/Shared/_layout.cshtml";
+    }
+
+
+    @model List<Cart>
+  
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title></title></head>
+    <body class="container">
+    <h2>Your Cart</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product.product_name</td>
+                    <td>@item.product_quantity</td>
+                    <td>@item.Product.product_price.ToString("C")</td>
+                    <td>@item.TotalPrice.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p><strong>Total Amount: @Model.Sum(item => item.TotalPrice).ToString("C")</strong></p>
+
+
+    <a class="btn btn-primary" asp-controller="Customer" asp-action="Payment">Checkout Entire Cart</a>
+
+
+</body>
+</html>

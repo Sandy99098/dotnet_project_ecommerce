@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Payment Failed";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card mt-5">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="card-title">Payment Failed</h3>
+                </div>
+                <div class="card-body">
+                    <p>Your payment could not be processed. Please try again.</p>
+                    <div class="mt-4">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Return to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

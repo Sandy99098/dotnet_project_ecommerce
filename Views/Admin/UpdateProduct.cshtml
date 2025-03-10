@@ -1,0 +1,43 @@
+﻿@* @model dotnet_project_ecommerce.Models.Product *@
+@model Product
+
+
+<h1>UpdateProductDetail</h1>
+
+<h4>product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-2"> </div>
+    <div class="col-md-8">
+
+        <form action="UpdateProduct" method="post" enctype="multipart/form-data">
+            
+            Product Name <br /> 
+            <input type="text" name="product_name" value="@Model.product_name" class="form-control my-3 " />
+
+            <input type="hidden" name="product_id" value="@Model.product_id" />
+            <input type="hidden" name="cat_id" value="@Model.cat_id" />
+
+            product Price <br />
+            <input type="text" name="product_price" value="@Model.product_price" class="form-control my-3 " />
+            product Description <br />
+            <input type="text" name="product_description" value="@Model.product_description" class="form-control my-3 " />
+
+            Category  <br />
+            @* <input type="text" name="cat_id" value="@Model.cat_id" class="form-control my-3 " /> *@
+            <div>
+                @Html.Partial("CategoryDropdown", ViewData["Category"])
+            </div>
+
+            @* <input type="image" name="product_image" value="@Model.product_image" class="form-control my-3 " /> *@
+            Product Image <br />
+
+            <input type="file" name="product_image" class="form-control my-3 " />
+
+            <input type="submit"  name="submit" value="Update product Details " class="form-control my-3  btn btn-primary" />
+
+        </form>
+    </div>
+
+    <div class="col-md-2"> </div>
+</div>
