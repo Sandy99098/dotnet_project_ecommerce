@@ -21,6 +21,6 @@ namespace dotnet_project_ecommerce.Models
         public int cart_status { get; set; } // 0 = Inactive, 1 = Active
 
         [NotMapped] // This property is not stored in the database
-        public double TotalPrice => Product?.product_price * product_quantity ?? 0;
+        public decimal TotalPrice => Product?.product_price * product_quantity ?? 0;
     }
 }

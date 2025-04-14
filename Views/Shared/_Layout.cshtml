@@ -8,11 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="HamroPasal - Your one-stop shop for Everything.">
     <meta name="author" content="Sandeep">
-    <title>@ViewData["Title"] - HamroPasal</title>
+    <title>@ViewData["Title"] - Shopera </title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+
+
     <link rel="stylesheet" href="~/Customer/Style.css" />
     @RenderSection("Styles", required: false)
+
+
+      <div class="container">
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success mt-3">@TempData["Success"]</div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger mt-3">@TempData["Error"]</div>
+        }
+    </div>
+    
 </head>
 <body>
     <!-- Header Section -->
@@ -55,17 +72,22 @@
                 </label>
                 <ul class="menu-items">
                     <li><a asp-controller="Customer" asp-action="Index">Home</a></li>
-                    <li><a asp-controller="Customer" asp-action="Sellers">Shop</a></li>
+                    <li><a href="#sellers">Shop Now</a></li>
                     <li><a asp-controller="Customer" asp-action="Blog">Blog</a></li>
-                    <li><a asp-controller="Customer" asp-action="ContactUs">Contact</a></li>
-                    <li><a asp-controller="Customer" asp-action="Feedback">FeedBack</a></li>
-                    <li><a asp-controller="Customer" asp-action="ViewCart">Cart</a></li>
-
+                    <li><a href="#contactus">Contact</a></li>
+                    <li><a asp-controller="Customer" asp-action="Feedback">Feedback</a></li>
+                    <li><a asp-controller="Customer" asp-action="ViewCart" asp-route-customerId="@SessionHelper.GetCustomerSession()">Cart</a></li>
 
                 </ul>
-                <div class="logo">
-                    <img src="https://i.postimg.cc/TP6JjSTt/logo.webp" alt="Molla Logo - Home">
-                </div>
+
+             
+
+                    <h1 class="brand-title">
+                        <span class="stylized-letter">S</span>hopera<span class="red-dot">.</span>
+                    </h1>
+
+
+               
             </div>
         </nav>
     </header>
@@ -79,15 +101,15 @@
     <footer>
         <div class="footer-container container">
             <div class="content_1">
-                <img src="https://i.postimg.cc/htGyQ4JB/footer-logo.png" alt="Footer Logo">
+                <img height="70" src="https://i.postimg.cc/44FTWpvT/logo-shopera.png" alt="Footer Logo">
                 <p>The customer is at the heart of our<br>unique business model, which includes<br>design.</p>
                 <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="Payment Methods">
             </div>
             <div class="content_2">
                 <h4>SHOPPING</h4>
-                <a href="#sellers">Clothing Store</a>
-                <a href="#sellers">Trending Shoes</a>
-                <a href="#sellers">Accessories</a>
+                <a href="#sellers"> Store</a>
+                <a href="#sellers"> Shoes</a>
+                <a href="#sellers">food</a> 
                 <a href="#sellers">Sale</a>
             </div>
             <div class="content_3">
@@ -99,7 +121,7 @@
             </div>
             <div class="content_4">
                 <h4>NEWLETTER</h4>
-                <p>Be the first to know about new<br>arrivals, look books, sales & promos!</p>
+               
                 <div class="f-mail">
                     <input type="email" placeholder="Your Email">
                     <i class='bx bx-envelope'></i>
@@ -109,7 +131,7 @@
         </div>
         <div class="f-design">
             <div class="f-design-txt container">
-                <p>Design and Code by code.sanket</p>
+                <p></p>
             </div>
         </div>
     </footer>

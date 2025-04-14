@@ -152,24 +152,34 @@
     </div>
 
     <!-- Total Price -->
-    <p>Total: $<span id="totalPrice">@Model.product_price</span></p>
-        <form asp-action="ProcessPayment" method="post">
+    <p>Total: $<span id="totalPrice">@Model.product_price</span></p> <br />
+
+        <form asp-action="InitiateEsewaPayment" method="post">
+            <!-- Product and Payment Information -->
+            <input type="hidden" name="product_code" value="PRODUCT_@Model.product_id" />
+            <input type="hidden" name="total_amount" id="hiddenTotalAmount" value="@Model.product_price" />
+            @* <input type="hidden" name="transaction_uuid" value="@Guid.NewGuid().ToString()" /> *@
             <input type="hidden" name="productId" value="@Model.product_id" />
             <input type="hidden" name="quantity" id="hiddenQuantity" value="1" />
-            <input type="hidden" name="totalAmount" id="hiddenTotalAmount" value="@Model.product_price" />
 
-            <button type="submit" name="paymentMethod" value="esewa" class="btn-esewa">
-                <img src="~/paymentlogo/esewaLogo.png" alt="Pay with eSewa" >
-            </button>
+            <!-- eSewa-specific hidden fields -->
+            @* <input type="hidden" name="transaction_uuid" value="@Guid.NewGuid().ToString()" /> *@
 
 
-            @* <button asp-action="PayWithKhalti" type="submit" name="PayWithKhalti" value="Khalti" class="btn"> *@
-            @*   "Pay with Khalti *@
-            @* </button> *@
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-success">Pay with eSewa</button>
         </form>
+
+
+            @*  <button type="submit"  class="btn-esewa">  *@
+            @*      <img src="~/paymentlogo/esewaLogo.png" alt="Pay with eSewa" >  *@
+            @*  </button> *@
+        <br />
+
         <form asp-action="InitiateKhaltiPayment" method="post">
             <input type="hidden" name="productId" value="@Model.product_id" />
-            <button type="submit" class="btn btn-primary">Pay with Khalti</button>
+            <input type="hidden" name="quantity" id="hiddenQuantity" value="1" />
+            <button type="submit" class="btn btn-primary ">Pay with Khalti</button>
         </form>
 
 </div>
@@ -192,7 +202,7 @@
             const totalPrice = quantity * productPrice;
             totalPriceElement.textContent = totalPrice.toFixed(2);
             hiddenQuantity.value = quantity;
-            hiddenTotalAmount.value = totalPrice.toFixed(2);
+            hiddenTotalAmount.value = totalPrice.toFixed(2); // Update the hidden total amount
         }
 
         decreaseButton.addEventListener("click", function () {
@@ -214,6 +224,7 @@
         // Initialize total price on page load
         updateTotalPrice();
     });
+
 </script>
 
 </html>

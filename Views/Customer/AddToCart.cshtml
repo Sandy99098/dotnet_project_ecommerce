@@ -1,0 +1,35 @@
+﻿@model List<dotnet_project_ecommerce.Models.Cart>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<h2>Shopping Cart</h2>
+
+@if (Model.Count == 0)
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <div class="cart-container">
+        @foreach (var item in Model)
+        {
+            <div class="cart-item">
+                <img src="@item.Product.product_image" alt="@item.Product.product_name">
+                <div class="cart-details">
+                    <h4>@item.Product.product_name</h4>
+                    <p>Price: @item.Product.product_price</p>
+                    <p>Quantity: @item.product_quantity</p>
+                    <p><strong>Total: @(item.TotalPrice)</strong></p>
+                    <form asp-action="RemoveFromCart" asp-route-cartId="@item.cart_id" method="post">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="cart-total">
+        <strong>Total Price: @Model.Sum(c => c.TotalPrice)</strong>
+    </div>
+}

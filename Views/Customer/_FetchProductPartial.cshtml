@@ -1,7 +1,8 @@
 ﻿@model Product
 
+
 <div class="best-p1">
-    <img src="@Url.Content("~/Uploads/product_images/" + Model.product_image)" asp-append-version="true" width="100" height="100" alt="@Model.product_name" />
+    <a asp-action="ProductDetail" asp-controller="Customer" asp-route-product_id="@Model.product_id" )"> <img src="@Url.Content("~/Uploads/product_images/" + Model.product_image)" asp-append-version="true" width="100" height="100" alt="@Model.product_name" /></a>
     @* <img src="@product[i].product_image" alt="@product[i].product_name" onerror="this.onerror=null; this.src='https://via.placeholder.com/300x300?text=No+Image';" /> *@
 
     <div class="best-p1-txt">
@@ -28,11 +29,7 @@
         <div class="buy-now">
             <button> 
 
-                <a  class="btn  " asp-controller="Customer" asp-action="Payment" asp-route-id="@Model.product_id">Buy Now</a>
-            </button>
-            <button>
-
-                <a class="btn  " asp-controller="Customer" asp-action="AddToCart" asp-route-id="@Model.product_id">add to cart Now</a>
+                <a  class="btn buy-now " asp-controller="Customer" asp-action="Payment" asp-route-id="@Model.product_id">Buy Now</a>
             </button>
         </div>
     </div>

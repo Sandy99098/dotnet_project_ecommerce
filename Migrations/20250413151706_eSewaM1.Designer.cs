@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotnet_project_ecommerce.Models;
 
@@ -11,9 +12,11 @@ using dotnet_project_ecommerce.Models;
 namespace dotnet_project_ecommerce.Migrations
 {
     [DbContext(typeof(myContext))]
-    partial class myContextModelSnapshot : ModelSnapshot
+    [Migration("20250413151706_eSewaM1")]
+    partial class eSewaM1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +52,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasKey("admin_id");
 
-                    b.ToTable("tbl_admin", (string)null);
+                    b.ToTable("tbl_admin");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Cart", b =>
@@ -78,7 +81,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasIndex("prod_id");
 
-                    b.ToTable("tbl_cart", (string)null);
+                    b.ToTable("tbl_cart");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Category", b =>
@@ -95,7 +98,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasKey("category_id");
 
-                    b.ToTable("tbl_category", (string)null);
+                    b.ToTable("tbl_category");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Customer", b =>
@@ -144,7 +147,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasKey("customer_id");
 
-                    b.ToTable("tbl_customer", (string)null);
+                    b.ToTable("tbl_customer");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Faqs", b =>
@@ -165,7 +168,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasKey("faq_id");
 
-                    b.ToTable("tbl_faq", (string)null);
+                    b.ToTable("tbl_faq");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Feedback", b =>
@@ -186,7 +189,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasKey("feedback_id");
 
-                    b.ToTable("tbl_feedback", (string)null);
+                    b.ToTable("tbl_feedback");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Product", b =>
@@ -219,13 +222,16 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasIndex("cat_id");
 
-                    b.ToTable("tbl_product", (string)null);
+                    b.ToTable("tbl_product");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.ViewModels.Payment.PaymentTransaction", b =>
                 {
-                    b.Property<string>("TransactionId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
@@ -263,13 +269,13 @@ namespace dotnet_project_ecommerce.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("TransactionId");
+                    b.Property<string>("TransactionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("CustomerId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("PaymentTransactions", (string)null);
+                    b.ToTable("PaymentTransactions");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Cart", b =>
@@ -300,25 +306,6 @@ namespace dotnet_project_ecommerce.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("dotnet_project_ecommerce.ViewModels.Payment.PaymentTransaction", b =>
-                {
-                    b.HasOne("dotnet_project_ecommerce.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("dotnet_project_ecommerce.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Category", b =>

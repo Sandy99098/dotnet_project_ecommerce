@@ -83,7 +83,7 @@ namespace dotnet_project_ecommerce.Controllers
             return View(model);
         }
 
-        // Admin Registration Page
+        //// Admin Registration Page
         public IActionResult Register()
         {
             return View();
@@ -99,7 +99,7 @@ namespace dotnet_project_ecommerce.Controllers
                 {
                     admin_name = model.admin_name,
                     admin_email = model.admin_email,
-                    admin_password = model.admin_password // Hash this password before saving
+                    admin_password = model.admin_password
                 };
 
                 admin.HashPassword(); // Hash the password
@@ -169,6 +169,7 @@ namespace dotnet_project_ecommerce.Controllers
             TempData["Message"] = "Profile updated successfully.";
             return RedirectToAction("Profile");
         }
+
 
         // Change Profile Image Action
 
@@ -403,7 +404,7 @@ public IActionResult UpdateCategory(int id)
         // confirm delete 
 
 
-        public IActionResult DeleteProduct(int id)
+        public IActionResult DeleteProduct(int id)  
         {
             var delete = _context.tbl_product.Find(id);
             _context.tbl_product.Remove(delete);

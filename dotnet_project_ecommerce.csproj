@@ -16,7 +16,7 @@
 	<ItemGroup>
 	  <Content Include="Models\ViewModels\KhaltiLookupResponse.cs" />
 	  <Content Include="Models\ViewModels\KhaltiResponse.cs" />
-	  <Content Include="Models\ViewModels\PaymentReceiptViewModel.cs" />
+	  <Content Include="Models\ViewModels\KhaltiPaymentReceiptViewModel.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

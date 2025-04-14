@@ -9,7 +9,7 @@ namespace dotnet_project_ecommerce.Models
         public int product_id {  get; set; }    
         public string product_name { get; set; } 
         public string product_description { get; set; }
-        public double product_price { get; set; }
+        public decimal product_price { get; set; }
         public string product_image { get; set; }
         public int cat_id { get; set; }
         public Category Category { get; set; }

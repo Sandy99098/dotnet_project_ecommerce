@@ -1,0 +1,52 @@
+﻿@model List<dotnet_project_ecommerce.Models.Cart>
+
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checkout</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Product.product_name</td>
+                <td>@item.Product.product_price.ToString("C")</td>
+                <td>@item.product_quantity</td>
+                <td>@item.TotalPrice.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-right">
+    <h4>Grand Total: @ViewBag.TotalAmount.ToString("C")</h4>
+    @* <a asp-action="Payment" asp-route-id="@ViewBag.CustomerId" class="btn btn-primary">Proceed to Payment</a> *@
+
+    @* <a asp-action="Payment" asp-route-customerId="@ViewBag.CustomerId" asp-route-totalAmount="@ViewBag.TotalAmount" class="btn btn-primary"> *@
+
+
+    @*     Proceed to Payment *@
+    @* </a> *@
+
+
+    <div class="text-right">
+        <h4>Grand Total: @ViewBag.TotalAmount.ToString("C")</h4>
+        <a asp-action="CheckoutPayment"
+           asp-route-customerId="@ViewBag.CustomerId"
+           asp-route-totalAmount="@ViewBag.TotalAmount"
+           class="btn btn-primary">
+            Proceed to Payment
+        </a>
+    </div>
+</div>

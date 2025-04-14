@@ -1,0 +1,178 @@
+﻿@model dotnet_project_ecommerce.Models.Product
+
+@{
+    ViewData["Title"] = "Product Detail";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<style>
+    .center-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* Full vertical center */
+    }
+
+    .product-card {
+        max-width: 600px;
+        width: 100%;
+        padding: 30px;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .quantity-controls {
+        display: flex; /* Enable flex to align items horizontally */
+        align-items: center; /* Vertically center the items */
+        gap: 10px; /* Space between buttons and input */
+    }
+
+        .quantity-controls input[type="number"] {
+            width: 30px; /* Smaller input width */
+            text-align: center;
+        }
+
+
+    .btn {
+        min-width: 50px;
+        padding: 8px 16px;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    .product-card img {
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .product-detail-line {
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    /* Button Styles */
+    .btn-warning {
+        background-color: #f05e8a;
+        color: #fff;
+        border: none;
+        border-radius: 15px;
+        font-weight: 500;
+        border: 1px solid #f05e8a;
+        transition: 0.3s;
+    }
+
+        .btn-warning:hover {
+            background-color: #fff;
+            color: #f05e8a;
+            font-weight: 600;
+        }
+
+    .buy-now {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 15px;
+        font-weight: 500;
+        border: 1px solid #007bff;
+        transition: 0.3s;
+    }
+
+        .buy-now:hover {
+            background-color: #fff;
+            color: #007bff;
+            font-weight: 600;
+        }
+</style>
+
+
+<div class="center-container">
+    <div class="product-card">
+        <h2 class="text-center">Product Detail</h2>
+
+        <div class="product-detail-line"><strong>Product:</strong> @Html.DisplayFor(model => model.product_name)</div>
+
+        <div class="text-center">
+            <img src="~/Uploads/Product_Images/@Model.product_image" asp-append-version="true" width="250" height="250" />
+        </div>
+
+        <div class="product-detail-line"><strong>Product ID:</strong> @Html.DisplayFor(model => model.product_id)</div>
+        <div class="product-detail-line"><strong>Price:</strong> @Html.DisplayFor(model => model.product_price)</div>
+        <div class="product-detail-line"><strong>Description:</strong> @Html.DisplayFor(model => model.product_description)</div>
+        <div class="product-detail-line"><strong>Category:</strong> @Html.DisplayFor(model => model.Category.category_name)</div>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Quantity</label>
+            <div class="input-group quantity-controls d-flex align-items-center">
+                <button class="btn btn-outline-secondary" type="button" id="decreaseQuantity">-</button>
+                <input type="number" id="quantity" class="form-control text-center" value="1" min="1" readonly />
+                <button class="btn btn-outline-secondary" type="button" id="increaseQuantity">+</button>
+            </div>
+        </div>
+
+        <div class="action-buttons justify-content-center">
+            <a asp-action="Index" asp-controller="Customer" class="btn btn-primary">Back to List</a>
+
+            <form asp-action="AddToCart" asp-controller="Customer" method="post">
+                <input type="hidden" name="productId" value="@Model.product_id" />
+                <input type="hidden" name="quantity" id="hiddenQuantityCart" value="1" />
+                <button type="submit" class="btn btn-warning">Add to Cart</button>
+            </form>
+
+            <form asp-action="Payment" asp-controller="Customer" method="post">
+                <input type="hidden" name="productId" value="@Model.product_id" />
+                <input type="hidden" name="quantity" id="hiddenQuantityBuy" value="1" />
+                <button type="submit" class="btn buy-now " asp-controller="Customer" asp-action="Payment" asp-route-id="@Model.product_id">Buy Now</button>
+                @* <a class="btn buy-now " asp-controller="Customer" asp-action="Payment" asp-route-id="@Model.product_id">Buy Now</a> *@
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const quantityInput = document.getElementById("quantity");
+        const decreaseButton = document.getElementById("decreaseQuantity");
+        const increaseButton = document.getElementById("increaseQuantity");
+        const hiddenQuantityCart = document.getElementById("hiddenQuantityCart");
+        const hiddenQuantityBuy = document.getElementById("hiddenQuantityBuy");
+
+        // Function to update hidden input values for cart and buy actions
+        function updateQuantities() {
+            const quantity = parseInt(quantityInput.value);
+            hiddenQuantityCart.value = quantity;
+            hiddenQuantityBuy.value = quantity;
+        }
+
+        // Event listener to decrease quantity
+        decreaseButton.addEventListener("click", function () {
+            let quantity = parseInt(quantityInput.value);
+            if (quantity > 1) {
+                quantity--;
+                quantityInput.value = quantity;
+                updateQuantities();
+            }
+        });
+
+        // Event listener to increase quantity
+        increaseButton.addEventListener("click", function () {
+            let quantity = parseInt(quantityInput.value);
+            quantity++;
+            quantityInput.value = quantity;
+            updateQuantities();
+        });
+
+        // Initial quantity setup
+        updateQuantities();
+    });
+</script>

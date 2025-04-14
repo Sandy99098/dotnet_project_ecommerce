@@ -461,6 +461,17 @@ body {
     margin-top: 65px;
     margin-bottom: 20px;
 }
+.scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+}
+
+.best-seller {
+    display: inline-flex;
+    gap: 1rem;
+}
+
 
 .seller .best-p1 {
     width: 250px;
@@ -518,9 +529,9 @@ body {
         .best-seller .add-cart button:hover a {
             color: #f05e8a;
         }
+/*
 
-
-/* .best-seller .add-cart button {
+ .best-seller .add-cart button {
     padding: 5px 5px;
     margin-top: 5px;
     font-size: 14px;
@@ -1346,4 +1357,36 @@ a.google {
 
 .card-header {
     border-radius: 10px 10px 0 0;
+}
+
+
+
+
+.brand-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    color: #111;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stylized-letter {
+    font-family: 'Montserrat Black', sans-serif;
+    font-size: 3.5rem;
+    background: linear-gradient(135deg, #111, #444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+}
+
+.red-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    border-radius: 2px;
+    margin-left: 5px;
+    transform: translateY(-4px);
 }

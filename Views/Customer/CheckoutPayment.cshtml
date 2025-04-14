@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Checkout Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Checkout Payment</h2>
+    <div class="payment-details">
+        <h4>Total Amount: @ViewBag.TotalAmount.ToString("C")</h4>
+        <form asp-action="InitiateKhaltiCheckout" method="post">
+            <input type="hidden" name="customerId" value="@ViewBag.CustomerId" />
+            <input type="hidden" name="totalAmount" value="@ViewBag.TotalAmount" />
+            <button type="submit" class="btn btn-primary">Pay with Khalti</button>
+        </form>
+        <a asp-action="ViewCart" asp-route-customerId="@ViewBag.CustomerId" class="btn btn-secondary">Cancel</a>
+    </div>
+</div>

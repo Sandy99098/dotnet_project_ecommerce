@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddHttpContextAccessor(); // Register IHttpContextAccessor
+builder.Services.AddHttpContextAccessor(); 
 
 // Add database context
 builder.Services.AddDbContext<myContext>(options =>
@@ -18,21 +18,21 @@ builder.Services.AddDbContext<myContext>(options =>
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(10); // Session timeout
-    options.Cookie.HttpOnly = true; // Secure the cookie
-    options.Cookie.IsEssential = true; // Mark the cookie as essential
+    options.IdleTimeout = TimeSpan.FromMinutes(10); 
+    options.Cookie.HttpOnly = true; 
+    options.Cookie.IsEssential = true; 
 });
 
 // Configure file upload limits
 builder.Services.Configure<FormOptions>(options =>
 {
-    options.MultipartBodyLengthLimit = 50 * 1024 * 1024; // Allow 50MB files
+    options.MultipartBodyLengthLimit = 50 * 1024 * 1024; 
 });
 
 // Configure Kestrel for large file uploads
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.Limits.MaxRequestBodySize = 50 * 1024 * 1024; // Allow 50MB file uploads
+    options.Limits.MaxRequestBodySize = 50 * 1024 * 1024; 
 });
 
 var app = builder.Build();
@@ -41,18 +41,27 @@ var app = builder.Build();
 var httpContextAccessor = app.Services.GetRequiredService<IHttpContextAccessor>();
 SessionHelper.Configure(httpContextAccessor);
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error"); // Use custom error page in production
-    app.UseHsts(); // Enable HTTP Strict Transport Security (HSTS)
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
 }
 
-app.UseHttpsRedirection(); // Redirect HTTP to HTTPS
-app.UseStaticFiles(); // Enable static file serving
-app.UseRouting(); // Enable routing
-app.UseSession(); // Enable session middleware
-app.UseAuthorization(); // Enable authorization
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error"); 
+    app.UseHsts(); 
+}
+
+app.UseHttpsRedirection(); 
+app.UseStaticFiles(); 
+app.UseRouting(); 
+app.UseSession(); 
+app.UseAuthorization(); 
 
 // Configure default route
 app.MapControllerRoute(
@@ -60,4 +69,4 @@ app.MapControllerRoute(
     pattern: "{controller=Customer}/{action=Index}/{id?}"
 );
 
-app.Run(); // Run the application
+app.Run(); 

@@ -1,0 +1,159 @@
+﻿
+
+@* <h1>EsewaPaymentSuccess</h1> *@
+
+@* @model dotnet_project_ecommerce.Models.ViewModels.EsewaPaymentReceiptViewModel *@
+
+@* @{ *@
+@*     Layout = "~/Views/Shared/_layout.cshtml"; *@
+@*     ViewData["Title"] = "eSewa Payment Success"; *@
+@* } *@
+
+@* <div class="container mt-5"> *@
+@*     <div class="card shadow-lg p-4 rounded"> *@
+@*         <h2 class="text-success text-center mb-4">✅ eSewa Payment Successful!</h2> *@
+
+@*         <div class="alert alert-success text-center"> *@
+@*             Your transaction was completed successfully via <strong>eSewa</strong>. *@
+@*         </div> *@
+
+@*         <table class="table table-striped table-bordered"> *@
+@*             <tbody> *@
+@*                 <tr> *@
+@*                     <th>Transaction ID</th> *@
+@*                     <td>@Model.TransactionId</td> *@
+@*                 </tr> *@
+@*                 <tr> *@
+@*                     <th>Transaction Code</th> *@
+@*                     <td>@Model.TransactionCode</td> *@
+@*                 </tr> *@
+@*                 <tr> *@
+@*                     <th>Product Name</th> *@
+@*                     <td>@Model.ProductName</td> *@
+@*                 </tr> *@
+@*                 <tr> *@
+@*                     <th>Customer Name</th> *@
+@*                     <td>@Model.CustomerName</td> *@
+@*                 </tr> *@
+@*                 <tr> *@
+@*                     <th>Customer Email</th> *@
+@*                     <td>@Model.CustomerEmail</td> *@
+@*                 </tr> *@
+@*                 <tr> *@
+@*                     <th>Amount</th> *@
+@*                     <td>Rs. @Model.Amount</td> *@
+@*                 </tr> *@
+@*                 <tr> *@
+@*                     <th>Tax Amount</th> *@
+@*                     <td>Rs. @Model.TaxAmount</td> *@
+@*                 </tr> *@
+@*                 <tr> *@
+@*                     <th>Total Amount</th> *@
+@*                     <td><strong>Rs. @Model.TotalAmount</strong></td> *@
+@*                 </tr> *@
+@*                 <tr> *@
+@*                     <th>Payment Date</th> *@
+@*                     <td>@Model.PaymentDate.ToString("MMMM dd, yyyy - hh:mm tt")</td> *@
+@*                 </tr> *@
+@*                 <tr> *@
+@*                     <th>Payment Method</th> *@
+@*                     <td>@Model.PaymentMethod</td> *@
+@*                 </tr> *@
+@*             </tbody> *@
+@*         </table> *@
+
+@*         <div class="text-center mt-4"> *@
+@*             <a href="/" class="btn btn-outline-primary">🏠 Return to Home</a> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+@model dotnet_project_ecommerce.Models.ViewModels.EsewaPaymentReceiptViewModel
+
+@{
+    ViewData["Title"] = "Payment Successful";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white">
+            <h2 class="mb-0"><i class="fas fa-check-circle"></i> Payment Successful</h2>
+        </div>
+
+        <div class="card-body">
+            <div class="alert alert-success">
+                <h4 class="alert-heading">Thank you for your payment!</h4>
+                <p>Your transaction has been completed successfully via eSewa.</p>
+            </div>
+
+            <h4 class="mb-3">Transaction Details</h4>
+            <dl class="row">
+                <dt class="col-sm-3">Transaction ID:</dt>
+                <dd class="col-sm-9">@Model.TransactionId</dd>
+
+                <dt class="col-sm-3">Transaction Code:</dt>
+                <dd class="col-sm-9">@Model.TransactionCode</dd>
+
+                <dt class="col-sm-3">Payment Date:</dt>
+                <dd class="col-sm-9">@Model.PaymentDate.ToString("f")</dd>
+
+                <dt class="col-sm-3">Payment Method:</dt>
+                <dd class="col-sm-9">@Model.PaymentMethod</dd>
+            </dl>
+
+            <h4 class="mb-3">Product Information</h4>
+            <dl class="row">
+                <dt class="col-sm-3">Product Name:</dt>
+                <dd class="col-sm-9">@Model.ProductName</dd>
+
+                <dt class="col-sm-3">Amount:</dt>
+                <dd class="col-sm-9">Rs. @Model.Amount.ToString("N2")</dd>
+
+                <dt class="col-sm-3">Tax (13%):</dt>
+                <dd class="col-sm-9">Rs. @Model.TaxAmount.ToString("N2")</dd>
+
+                <dt class="col-sm-3">Total Paid:</dt>
+                <dd class="col-sm-9 text-success">Rs. @Model.TotalAmount.ToString("N2")</dd>
+            </dl>
+
+            <h4 class="mb-3">Customer Information</h4>
+            <dl class="row">
+                <dt class="col-sm-3">Customer Name:</dt>
+                <dd class="col-sm-9">@Model.CustomerName</dd>
+
+                <dt class="col-sm-3">Customer Email:</dt>
+                <dd class="col-sm-9">@Model.CustomerEmail</dd>
+            </dl>
+        </div>
+
+        <div class="card-footer text-center">
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-home"></i> Return to Home
+            </a>
+            <button onclick="window.print()" class="btn btn-outline-secondary">
+                <i class="fas fa-print"></i> Print Receipt
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        max-width: 800px;
+        margin: 0 auto;
+        border-radius: 15px;
+    }
+
+    .card-header {
+        border-radius: 15px 15px 0 0 !important;
+    }
+
+    dt {
+        font-weight: 500;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+</style>

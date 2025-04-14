@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotnet_project_ecommerce.Models;
 
@@ -11,9 +12,11 @@ using dotnet_project_ecommerce.Models;
 namespace dotnet_project_ecommerce.Migrations
 {
     [DbContext(typeof(myContext))]
-    partial class myContextModelSnapshot : ModelSnapshot
+    [Migration("20250414044333_UpdatePaymentTransactionModelEsewa")]
+    partial class UpdatePaymentTransactionModelEsewa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +52,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasKey("admin_id");
 
-                    b.ToTable("tbl_admin", (string)null);
+                    b.ToTable("tbl_admin");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Cart", b =>
@@ -78,7 +81,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasIndex("prod_id");
 
-                    b.ToTable("tbl_cart", (string)null);
+                    b.ToTable("tbl_cart");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Category", b =>
@@ -95,7 +98,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasKey("category_id");
 
-                    b.ToTable("tbl_category", (string)null);
+                    b.ToTable("tbl_category");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Customer", b =>
@@ -144,7 +147,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasKey("customer_id");
 
-                    b.ToTable("tbl_customer", (string)null);
+                    b.ToTable("tbl_customer");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Faqs", b =>
@@ -165,7 +168,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasKey("faq_id");
 
-                    b.ToTable("tbl_faq", (string)null);
+                    b.ToTable("tbl_faq");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Feedback", b =>
@@ -186,7 +189,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasKey("feedback_id");
 
-                    b.ToTable("tbl_feedback", (string)null);
+                    b.ToTable("tbl_feedback");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Product", b =>
@@ -219,7 +222,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasIndex("cat_id");
 
-                    b.ToTable("tbl_product", (string)null);
+                    b.ToTable("tbl_product");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.ViewModels.Payment.PaymentTransaction", b =>
@@ -269,7 +272,7 @@ namespace dotnet_project_ecommerce.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("PaymentTransactions", (string)null);
+                    b.ToTable("PaymentTransactions");
                 });
 
             modelBuilder.Entity("dotnet_project_ecommerce.Models.Cart", b =>

@@ -1,4 +1,4 @@
-﻿@model dotnet_project_ecommerce.ViewModels.PaymentReceiptViewModel
+﻿@model dotnet_project_ecommerce.ViewModels.KhaltiPaymentReceiptViewModel
 
 @{
     ViewData["Title"] = "Payment Success";
@@ -28,19 +28,7 @@
                             <li class="list-group-item"><strong>Customer Email:</strong> @Model.CustomerEmail</li>
                         </ul>
                     </div>
-                    @foreach (var item in Model.Items)
-                    {
-                        <div>
-                            <div>@item.ProductName</div>
-                            <div>@item.Quantity</div>
-                            <div>@item.Price.ToString("C")</div>
-                            <div>@((item.Price * item.Quantity).ToString("C"))</div>
-                        </div>
-                    }
-                 
-                    <div class="total-amount">
-                        <h4>Grand Total: @Model.TotalAmount.ToString("C")</h4>
-                    </div>
+
                     <div class="mt-4">
                         <a href="@Url.Action("Index", "Customer")" class="btn btn-primary">Return to Home</a>
                     </div>

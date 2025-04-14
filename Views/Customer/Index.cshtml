@@ -11,13 +11,13 @@
 <section id="home">
     <div class="home_page">
         <div class="home_img">
-            <img src="https://i.postimg.cc/t403yfn9/home2.jpg" loading="lazy">
+            <img src="https://i.postimg.cc/Y9SkzGLZ/Ecommerce-Website.webp" loading="lazy">
         </div>
         <div class="home_txt">
-            <p class="collections">SUMMER COLLECTION</p>
-            <h2>FALL - WINTER<br>Collection 2023</h2>
+            <p class="collections">Discover the Extraordinary</p>
+            <h2>Your Ultimate <br /> Lifestyle Destination</h2>
             <div class="home_label">
-                <p>A specialist label creating luxury essentials. Ethically crafted<br>with an unwavering commitment to exceptional quality.</p>
+                <p> Immerse yourself in a world of cutting-edge electronics, <br/> gourmet food experiences, and chic fashion & clothing <br />– all curated to elevate your everyday life.</p>
             </div>
             <button onclick="window.location.href='#sellers'">
                 SHOP NOW <i class='bx bx-right-arrow-alt'></i>
@@ -65,38 +65,43 @@
             case "electronics":
                 return "https://i.postimg.cc/0ygJtq1D/pngtree-some-electronic-gadgets-on-a-wooden-table-picture-image-15295928.png";
             case "food":
-                return "https://i.postimg.cc/0ygJtq1D/pngtree-some-electronic-gadgets-on-a-wooden-table-picture-image-15295928.png";
+                return "https://i.postimg.cc/kgsWK5BR/foods.png";
+            case "home appliances":
+                return "https://i.postimg.cc/zBb16FF5/Home-Appliances.jpg";
             case "others":
-                return "https://via.placeholder.com/150";
+                return "https://i.postimg.cc/9QGK5KJY/others.png";
             default:
-                return "https://via.placeholder.com/150";
+                return "https://postimg.cc/9DVcf1Vr";
         }
     }
 }
 
 <!-- Sellers Section -->
 <section id="sellers">
-
     <div class="seller container">
         <h2>Our Products</h2>
-        <div class="best-seller">
+        <div class="scroll-container">
+
+        <div class="best-seller  column-gap-md-4">
             @foreach (var product in Model)
             {
                 <partial name="_FetchProductPartial" model="product" />
+
             }
+        </div>
         </div>
 
     </div>
-
+    <</section>
     <br />
-    <hr />
     <div class="seller container">
     <!-- Electronics Section -->
     <section id="electronics">
         <div class="seller container">
             <h2>Electronics</h2>
             <div class="best-seller">
-                @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name == "Electronics")?.category_id))
+                    @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name.ToLower() == "electronics".ToLower())?.category_id))
+
                 {
                     <partial name="_FetchProductPartial" model="product" />
                 }
@@ -105,7 +110,7 @@
     </section>
     </div>
   <br />
-  <hr />
+  
     <!-- Food Section -->
     <section id="food">
         <div class="seller container">
@@ -125,28 +130,47 @@
     <!-- Fashion Section -->
     <section id="fashion">
         <div class="seller container">
-            <h2>Fashion</h2>
-            <div class="best-seller">
-                @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name == "Fashion")?.category_id))
-                {
-                    <partial name="_FetchProductPartial" model="product" />
-                }
+            <div class="seller container">
+                <h2>Fashion</h2>
+                <div class="best-seller">
+                    @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name.ToLower() == "fashion".
+                    ToLower())?.category_id))
+                    {
+                        <partial name="_FetchProductPartial" model="product" />
+                    }
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Others Section -->
-    <section id="others">
+        @* ction --> *@
+    <section id="HomeAppliances">
         <div class="seller container">
-            <h2>Others</h2>
-            <div class="best-seller">
-                @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name == "Others")?.category_id))
-                {
-                    <partial name="_FetchProductPartial" model="product" />
-                }
+            <div class="seller container">
+                <h2>Home Appliances</h2>
+                <div class="best-seller">
+                    @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name.ToLower() == "Home appliances".
+                    ToLower())?.category_id))
+                    {
+                        <partial name="_FetchProductPartial" model="product" />
+                    }
+                </div>
             </div>
         </div>
+
     </section>
+    <!-- Others Section -->
+        <section id="HomeAppliances">
+            <div class="seller container">
+                <div class="seller container">
+                    <h2>Others</h2>
+                    <div class="best-seller">
+                        @foreach (var product in Model.Where(p => p.cat_id == categories?.FirstOrDefault(c => c.category_name.ToLower() == "Others".
+                        ToLower())?.category_id))
+                        {
+                            <partial name="_FetchProductPartial" model="product" />
+                        }
+                    </div>
+                </div>
+    
 </section>
 
 <!-- Contact Section -->
@@ -165,7 +189,7 @@
                         attention.
                     </span>
                     <h3>Nepal</h3>
-                    <p>6XFJ+J78, Kahun Rd, Pokhara 33700<br> 061522650</p>
+                    <p>6XFJ+J78, pokhara 05 Parsyang <br> 061527650</p>
                 </div>
                 <div class="form-details">
                     <input type="text" name="name" id="name" placeholder="Name" required>
